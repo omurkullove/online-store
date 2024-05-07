@@ -1,0 +1,36 @@
+.container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 999;
+    background-color: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+
+    .title {
+        font-size: 17px;
+        letter-spacing: 1px;
+        color: var(--text);
+    }
+
+    .loading {
+        animation: loading-animate 2s infinite;
+        -webkit-animation: loading-animate 2s infinite;
+        font-size: 30px;
+        color: var(--hover);
+    }
+}
+
+@keyframes loading-animate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(720deg);
+    }
+}

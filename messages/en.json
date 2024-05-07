@@ -1,0 +1,38 @@
+{
+    "Header": {
+        "search": "Store search",
+        "login": "login"
+    },
+    "Login": {
+        "title": "Login",
+        "email": "Mail",
+        "password": "Password",
+        "register": "Register",
+        "login": "Log in",
+        "forgot_pass": "Forgot your password?"
+    },
+
+    "Register": {
+        "title": "Registration",
+        "email": "Mail",
+        "login": "Log in",
+        "get_code": "Get a code",
+        "name": "Name",
+        "username": "Username",
+        "verification_code": "Verification code",
+        "password": "Password",
+        "password_confirm": "Confirm password",
+        "register": "Register",
+        "back": "Go back",
+        "message_pass_conf": "Passwords don't match"
+    },
+
+    "Messages": {
+        "1302": "Insufficient permissions",
+        "1202993": "Incorrect email or password",
+        "1402": "User already exists",
+        "1101": "Market not found"
+    },
+
+    "screen_loading_title": "Page loading..."
+}

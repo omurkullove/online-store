@@ -1,0 +1,26 @@
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    background-color: var(--bg);
+    min-height: 100dvh;
+
+    padding-inline: 120px;
+}
+
+@media (max-width: 1190px) {
+    .container {
+        padding-inline: 60px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding-inline: 60px;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding-inline: 10px;
+    }
+}
