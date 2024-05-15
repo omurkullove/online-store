@@ -20,7 +20,7 @@ const Category = ({ data }: { data: ICategoryApiResponse }) => {
     const [counter, setCounter] = useState(0);
     const max_page = Math.ceil(data.total / data.page_size);
 
-    const isMore = data.total != data.items.length;
+    const isMore = data.total != data.items?.length;
 
     const handlePrev = useCallback(() => {
         if (!sliderRef.current) return;
@@ -123,7 +123,7 @@ const Category = ({ data }: { data: ICategoryApiResponse }) => {
                 onInit={() => setIsSwiperReady(true)}
                 loop={!isMore}
             >
-                {data.items.map((item) => (
+                {data.items?.map((item) => (
                     <SwiperSlide key={item.id}>
                         <div
                             className={styles.item}

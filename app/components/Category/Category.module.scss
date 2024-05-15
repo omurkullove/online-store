@@ -108,7 +108,8 @@
 }
 
 [data-theme='dark'] {
-    .container .category_container .list {
+    .container .list {
         border: 0.1px solid var(--text);
+        box-shadow: none;
     }
 }

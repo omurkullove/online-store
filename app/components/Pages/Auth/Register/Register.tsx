@@ -2,20 +2,21 @@ import FormField from '@/app/elements/FormField/FormField';
 import styles from './Register.module.scss';
 import { FormEvent, useState } from 'react';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import authService from '@/app/services/authService';
 import { ImSpinner2 } from 'react-icons/im';
 import { toast } from 'react-toastify';
 import { useTranslations } from 'next-intl';
 import { IRegister } from '@/interfaces/IAuth';
 import { MESSAGES, SUCCESS_STATUS } from '@/app/utils/consts';
+import { STATUS_CODES } from 'http';
 
 const Register = () => {
     const [passwordType, setPasswordType] = useState('password');
     const [passwordConfType, setPasswordConfType] = useState('password');
     const [currentStep, setCurrentStep] = useState<'register' | 'pre-register'>('pre-register');
     const [isLoading, setIsLoading] = useState(false);
-    const { push } = useRouter();
+    const { push, locale } = useRouter();
     const t = useTranslations('Register');
     const message = useTranslations('Messages');
 
@@ -28,7 +29,7 @@ const Register = () => {
         const code = await authService.getConfirmCode(data?.email as string);
 
         if (code === SUCCESS_STATUS) {
-            toast.success(`${MESSAGES.success.get_register_code + data.email}.`);
+            toast.success(`${MESSAGES.success.get_register_code[locale as 'ru' | 'en'] + data.email}.`);
             setCurrentStep('register');
         } else {
             toast.error(message(code));
@@ -48,8 +49,12 @@ const Register = () => {
             return;
         }
 
-        const res = await authService.register(data);
-        toast.success(res);
+        const code = await authService.register(data);
+        if (code != SUCCESS_STATUS) {
+            toast.error(message(code));
+        } else {
+            push('/auth/login');
+        }
         setCurrentStep('register');
         setIsLoading(false);
     };

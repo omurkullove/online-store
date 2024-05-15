@@ -29,7 +29,7 @@
 
     "Messages": {
         "1302": "Insufficient permissions",
-        "1202993": "Incorrect email or password",
+        "1202993": "Invalid credentials",
         "1402": "User already exists",
         "1101": "Market not found"
     },

@@ -45,7 +45,7 @@ class AuthService {
         try {
             const res = await API_CLIENT.post(`/${this.api_variable}/register-user`, credentials);
             const data = await res.data;
-            return data;
+            return data?.detail;
         } catch (err) {
             return {};
         }

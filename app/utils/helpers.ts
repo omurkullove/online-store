@@ -1,6 +1,10 @@
 import { ITranslation } from '@/interfaces/IBase';
 
 export const translated = (key: 'title' | 'description', translate_array: ITranslation[], locale: string) => {
+    if (!Array.isArray(translate_array)) {
+        return 'Отсутствует перевод';
+    }
+
     if (translate_array.length <= 1) {
         return translate_array[0].content[key];
     }

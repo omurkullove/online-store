@@ -2,4 +2,9 @@
     display: flex;
     flex-direction: column;
     padding: 25px 0px;
+    gap: 30px;
+
+    .double_container {
+        display: flex;
+    }
 }

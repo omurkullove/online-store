@@ -10,7 +10,7 @@ export const API_CLIENT = axios.create({
     baseURL: PUBLIC_BASE_URL,
     withCredentials: true,
     headers: {
-        Referer: 'localhost:3000',
+        Referer: 'localhost:3030',
     },
 });
 
@@ -18,7 +18,7 @@ export const API_SERVER = axios.create({
     baseURL: BASE_URL,
     withCredentials: true,
     headers: {
-        Referer: 'localhost:3000',
+        Referer: 'localhost:3030',
     },
 });
 
