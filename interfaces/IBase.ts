@@ -3,5 +3,6 @@ export interface ITranslation {
     content: {
         title: string;
         description: string;
+        name?: string;
     };
 }

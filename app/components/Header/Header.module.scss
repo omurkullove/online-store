@@ -2,7 +2,6 @@
     padding: 10px 0px;
     display: flex;
     justify-content: space-between;
-    background-color: var(--color);
 
     .section_1 {
         display: flex;
@@ -19,7 +18,6 @@
             .title {
                 font-weight: 500;
                 font-size: 20px;
-                text-transform: uppercase;
                 color: var(--text);
             }
         }
@@ -43,20 +41,23 @@
 
                 border: 1px solid var(--light-gray);
                 background-color: var(--gray);
+                background: var(--search-input-bg);
 
-                font-weight: 100;
+                font-weight: 300;
                 font-style: normal;
                 letter-spacing: 1px;
 
                 &::placeholder {
                     letter-spacing: normal;
                 }
+                border: var(--search-input-border);
+                color: var(--text);
             }
 
             .search_icon {
                 position: absolute;
                 right: 10px;
-                color: var(--black);
+                color: var(--text);
             }
         }
     }
@@ -71,9 +72,41 @@
             gap: 10px;
             height: 50%;
 
+            .contacts {
+                display: flex;
+                align-items: center;
+
+                gap: 5px;
+                font-size: 12px;
+
+                .list {
+                    max-height: 34px;
+                    overflow: scroll;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    .number {
+                        display: flex;
+                        align-items: center;
+                        cursor: pointer;
+                        transition: color 0.3s ease;
+                        -webkit-transition: color 0.3s ease;
+                        -moz-transition: color 0.3s ease;
+                        -ms-transition: color 0.3s ease;
+                        -o-transition: color 0.3s ease;
+                        color: var(--text);
+                        font-size: 12px;
+
+                        &:hover {
+                            color: var(--hover);
+                        }
+                        color: var(--text);
+                    }
+                }
+            }
+
             .address,
-            .toggle_translate,
-            .number {
+            .toggle_translate {
                 display: flex;
                 align-items: center;
                 gap: 5px;
@@ -89,10 +122,6 @@
                 &:hover {
                     color: var(--hover);
                 }
-            }
-
-            .number {
-                color: var(--text);
             }
         }
 

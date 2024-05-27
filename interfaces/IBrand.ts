@@ -2,7 +2,7 @@ import { ITranslation } from './IBase';
 
 export interface IBrandItem {
     translate_content: ITranslation[];
-    _id: string;
+    id: string;
     icon: string;
 }
 

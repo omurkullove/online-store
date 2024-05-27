@@ -13,12 +13,14 @@ import { signOut, useSession } from 'next-auth/react';
 import { FiLogIn } from 'react-icons/fi';
 import { API } from '@/app/axios';
 import { toast } from 'react-toastify';
+import { IMarket } from '@/interfaces/IMarket';
 interface ISidebarProps {
     onClose: () => void;
     user: IUserInfo;
+    market: IMarket;
 }
 
-const Sidebar = ({ onClose, user }: ISidebarProps) => {
+const Sidebar = ({ onClose, user, market }: ISidebarProps) => {
     const router = useRouter();
     const locale = useLocale();
     const t = useTranslations('Header');
@@ -64,20 +66,27 @@ const Sidebar = ({ onClose, user }: ISidebarProps) => {
                     </div>
                 </div>
 
-                <a
-                    href='tel:+996555784590'
-                    className={styles.number}
-                >
+                <div className={styles.contacts}>
                     <FaPhone />
-                    +996555784590
-                </a>
+                    <div className={styles.list}>
+                        {Object.values(market.contact_details).map((value) => (
+                            <a
+                                key={value}
+                                href={`tel:${value}`}
+                                className={styles.number}
+                            >
+                                {value}
+                            </a>
+                        ))}
+                    </div>
+                </div>
 
                 <Link
                     className={styles.address}
-                    href={'http://maps.google.com/?q=Online Store  Киевская 78'}
+                    href={`http://maps.google.com/?q=${market.address}`}
                     target='_blank'
                 >
-                    <FaLocationDot /> ул. Киевская 78 тц. Бишкек Парк
+                    <FaLocationDot /> {market.address}
                 </Link>
 
                 <div className={styles.select}>

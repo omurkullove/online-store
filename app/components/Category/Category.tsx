@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Category.module.scss';
 import Image from 'next/image';
-import { ICategoryApiResponse, ICategoryItem } from '@/interfaces/ICategory';
+import { ICategoryApiResponse } from '@/interfaces/ICategory';
 import { useLocale } from 'next-intl';
 import { translated } from '@/app/utils/helpers';
 import { BiSolidChevronLeftCircle, BiSolidChevronRightCircle } from 'react-icons/bi';

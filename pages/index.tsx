@@ -13,9 +13,12 @@ const HomePage = ({
     category_data: ICategoryApiResponse;
     brand_data: IBrandApiResponse;
 }) => {
-    console.log(brand_data);
-
-    return <Home category_data={category_data} />;
+    return (
+        <Home
+            category_data={category_data}
+            brand_data={brand_data}
+        />
+    );
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
@@ -29,7 +32,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const category_data = await categoryService.GET(pageCategory.toString());
     const max_page = Math.ceil(category_data.total / category_data.page_size);
 
-    const brand_data = await brandService.GET('1');
+    const brand_data = await brandService.GET('1', 'default');
 
     if (pageCategory > max_page && category_data.total != 0) {
         return {

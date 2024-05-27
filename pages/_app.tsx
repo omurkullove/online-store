@@ -17,15 +17,18 @@ import ToastProvider from '@/app/providers/ToastProvider';
 import { CtxOrReq } from 'next-auth/client/_utils';
 import { IUserInfo } from '@/interfaces/IAuth';
 import ScreenLoading from '@/app/components/ScreenLoading/ScreenLoading';
+import marketService from '@/app/services/marketService';
+import { IMarket } from '@/interfaces/IMarket';
 
 const font = Lato({ weight: ['300', '100', '700', '900', '400'], subsets: ['latin'], display: 'swap' });
 
 interface ICustomAppProps extends AppProps {
     user: IUserInfo;
     messages: any;
+    market: IMarket;
 }
 
-export default function MyApp({ Component, pageProps, user, messages }: ICustomAppProps) {
+export default function MyApp({ Component, pageProps, user, messages, market }: ICustomAppProps) {
     const router = useRouter();
 
     const [loading, setLoading] = useState(false);
@@ -55,10 +58,10 @@ export default function MyApp({ Component, pageProps, user, messages }: ICustomA
     return (
         <>
             <Head>
-                <title>Online Store</title>
+                <title>{market.name}</title>
                 <meta
                     name='description'
-                    content='This is awesome and user-friendly online store. Here you can find necessary items'
+                    content={market.description}
                 />
                 <meta
                     name='keywords'
@@ -92,7 +95,10 @@ export default function MyApp({ Component, pageProps, user, messages }: ICustomA
                     >
                         <SessionProvider>
                             <AnimatePresence>{loading || user?.isLoading ? <ScreenLoading /> : null}</AnimatePresence>
-                            <Wrapper user={user}>
+                            <Wrapper
+                                user={user}
+                                market={market}
+                            >
                                 <ToastProvider>
                                     <Component {...pageProps} />
                                 </ToastProvider>
@@ -105,9 +111,13 @@ export default function MyApp({ Component, pageProps, user, messages }: ICustomA
     );
 }
 
-MyApp.getInitialProps = async (context: AppContext): Promise<{ messages: any; user: IUserInfo } & AppInitialProps> => {
+MyApp.getInitialProps = async (
+    context: AppContext
+): Promise<{ messages: any; user: IUserInfo; market: IMarket } & AppInitialProps> => {
     const ctx = await App.getInitialProps(context);
     const session = await getSession(context as CtxOrReq);
+
+    const market = await marketService.GET();
 
     const userInfo = session?.user as IUserInfo;
 
@@ -115,5 +125,6 @@ MyApp.getInitialProps = async (context: AppContext): Promise<{ messages: any; us
         ...ctx,
         user: userInfo,
         messages: (await import(`../messages/${context.router.locale}.json`)).default,
+        market,
     };
 };

@@ -8,11 +8,18 @@
 [data-theme='light'] {
     --bg: white;
     --text: rgb(32, 33, 36);
+    --search-input-border: none;
+    --bg-light: white;
+    --search-input-bg: #f5f5f5;
 }
 
 [data-theme='dark'] {
     --bg: rgb(32, 33, 36);
     --text: rgb(150, 150, 153);
+    --search-input-border: 0.5px solid rgb(150, 150, 153);
+    --search-input-bg: transparent;
+    --bg-light: #303133;
+    --text-light: #cccccd;
 }
 
 * {

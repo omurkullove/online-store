@@ -5,16 +5,25 @@
     position: relative;
 
     .arrows {
-        margin-top: 5px;
         display: flex;
         align-items: center;
         gap: 5px;
         justify-content: flex-end;
+        height: 25px;
+        margin-top: 3px;
 
         .arrow {
             cursor: pointer;
             color: var(--text);
             font-size: 23px;
+        }
+
+        @media (max-width: 450px) {
+            gap: 10px;
+            margin-top: 7px;
+            .arrow {
+                font-size: 30px;
+            }
         }
 
         .inactive {
@@ -25,7 +34,7 @@
     }
 
     .list {
-        min-height: 159px;
+        min-height: 175px;
         width: 100%;
         box-shadow: var(--box-shadow);
         border-radius: 10px;

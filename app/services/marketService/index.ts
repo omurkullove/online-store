@@ -1,14 +1,22 @@
 import { API_SERVER } from '@/app/axios';
+import { IMarket } from '@/interfaces/IMarket';
 
 class MarkerService {
     async GET() {
         try {
-            const res = await API_SERVER.get('/market-global-admin');
+            const res = await API_SERVER.get('/market-client');
             const data = await res.data;
 
-            return data;
+            return data as IMarket;
         } catch (err) {
-            return {};
+            return {
+                name: 'Too many request',
+                contact_details: {},
+                description: '',
+                address: '',
+                image: '',
+                features: { online_payment: false, user_auth: false },
+            } as IMarket;
         }
     }
 }

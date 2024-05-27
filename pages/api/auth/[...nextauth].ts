@@ -59,13 +59,14 @@ export const options: NextAuthOptions = {
             const expiredData = myAccessToken.match(regex) ?? '';
             const expirationDate = new Date(expiredData[1]);
 
-            if (!refreshTokenPromise && Date.now() > expirationDate.getTime()) {
+            if (!refreshTokenPromise && Date.now() >= expirationDate.getTime()) {
                 refreshTokenPromise = authService.refresh(token.token as any);
 
                 try {
                     const refreshedToken = await refreshTokenPromise;
                     if (refreshedToken && refreshedToken.length) {
                         token.token = refreshedToken;
+                        console.log('REFRESHED');
                     } else {
                         token = {};
                     }

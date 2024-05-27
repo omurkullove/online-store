@@ -14,8 +14,9 @@ import UserPopup from '../UserPopup/UserPopup';
 import { IUserInfo } from '@/interfaces/IAuth';
 import { VscMenu } from 'react-icons/vsc';
 import Sidebar from '../Sidebar/Sidebar';
+import { IMarket } from '@/interfaces/IMarket';
 
-const Header = ({ user }: { user: IUserInfo }) => {
+const Header = ({ user, market }: { user: IUserInfo; market: IMarket }) => {
     const [isLangModal, setIsLangModal] = useState(false);
     const [isUserPopup, setIsUserPopup] = useState(false);
     const [isSidebar, setIsSidebar] = useState(false);
@@ -43,7 +44,7 @@ const Header = ({ user }: { user: IUserInfo }) => {
                             height={70}
                             alt='logo'
                         />
-                        <p className={styles.title}>GLobal Joy</p>
+                        <p className={styles.title}>{market.name}</p>
                     </div>
 
                     <div className={styles.search_block}>
@@ -57,19 +58,28 @@ const Header = ({ user }: { user: IUserInfo }) => {
                 </section>
                 <section className={styles.section_2}>
                     <div className={styles.block_1}>
-                        <Link
-                            href='tel:+996555784590'
-                            className={styles.number}
-                        >
+                        <div className={styles.contacts}>
                             <FaPhone />
-                            +996555784590
-                        </Link>
+
+                            <div className={styles.list}>
+                                {Object.values(market.contact_details).map((value) => (
+                                    <Link
+                                        key={value}
+                                        href={`tel:${value}`}
+                                        className={styles.number}
+                                    >
+                                        {value}
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
                         <Link
                             className={styles.address}
-                            href={'http://maps.google.com/?q=Online Store  Киевская 78'}
+                            href={`http://maps.google.com/?q=${market.address}`}
                             target='_blank'
                         >
-                            <FaLocationDot /> ул. Киевская 78 тц. Бишкек Парк
+                            <FaLocationDot /> {market.address}
                         </Link>
 
                         <p
@@ -147,6 +157,7 @@ const Header = ({ user }: { user: IUserInfo }) => {
                         <Sidebar
                             onClose={() => setIsSidebar(false)}
                             user={user}
+                            market={market}
                         />
                     </motion.div>
                 )}

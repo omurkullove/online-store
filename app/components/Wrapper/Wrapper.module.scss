@@ -5,6 +5,40 @@
     min-height: 100dvh;
 
     padding-inline: 120px;
+    position: relative;
+
+    @media (max-width: 1024px) {
+        padding-top: 80px;
+    }
+
+    .header_container {
+        position: sticky;
+        top: 0;
+        background-color: var(--bg);
+        z-index: 99;
+        left: 0;
+        right: 0;
+
+        padding-inline: 10px;
+
+        @media (max-width: 1024px) {
+            position: fixed;
+            padding-inline: 60px;
+        }
+
+        @media (max-width: 600px) {
+            padding-inline: 10px;
+        }
+        transition: box-shadow 0.5s linear;
+        -webkit-transition: box-shadow 0.5s linear;
+        -moz-transition: box-shadow 0.5s linear;
+        -ms-transition: box-shadow 0.5s linear;
+        -o-transition: box-shadow 0.5s linear;
+    }
+
+    .shadow {
+        box-shadow: var(--box-shadow);
+    }
 }
 
 @media (max-width: 1190px) {
