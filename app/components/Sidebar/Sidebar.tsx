@@ -25,11 +25,11 @@ const Sidebar = ({ onClose, user, market }: ISidebarProps) => {
     const locale = useLocale();
     const t = useTranslations('Header');
 
-    const { pathname } = router;
+    const { asPath } = router;
     const { update } = useSession();
 
     const handleChangeLanguage = async (lang: string) => {
-        await router.push(pathname, pathname, { locale: lang }).then(onClose);
+        await router.push(asPath, asPath, { locale: lang }).then(onClose);
     };
 
     const toggleDarkMode: ChangeEventHandler<HTMLInputElement> = async () => {

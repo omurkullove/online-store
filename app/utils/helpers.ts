@@ -13,3 +13,7 @@ export const translated = (key: 'title' | 'description' | 'name', translate_arra
 
     return correct_translate?.content[key] ?? 'Отсутствует перевод';
 };
+
+export const numCorrecter = (number: string | number) => {
+    return new Intl.NumberFormat('ru-RU').format(Number(number));
+};

@@ -1,5 +1,5 @@
 import { API_CLIENT, API_SERVER } from '@/app/axios';
-import { IBrandApiResponse } from '@/interfaces/IBrand';
+import { IBrandApiResponse, IBrandItem } from '@/interfaces/IBrand';
 
 class BrandService {
     async GET(page_brand: string | string[], type: 'default' | 'paginated') {
@@ -17,6 +17,17 @@ class BrandService {
                 page_size: 20,
                 total: 0,
             } as IBrandApiResponse;
+        }
+    }
+
+    async GET_ONE(id: string) {
+        try {
+            const res = await API_SERVER.get(`/brand-client?id=${id}`);
+            const data = await res.data;
+
+            return data as IBrandItem;
+        } catch (err) {
+            return {} as IBrandItem;
         }
     }
 }

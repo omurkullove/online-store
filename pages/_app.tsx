@@ -19,6 +19,9 @@ import { IUserInfo } from '@/interfaces/IAuth';
 import ScreenLoading from '@/app/components/ScreenLoading/ScreenLoading';
 import marketService from '@/app/services/marketService';
 import { IMarket } from '@/interfaces/IMarket';
+import categoryService from '@/app/services/categoryService';
+import { ICategoryApiResponse } from '@/interfaces/ICategory';
+import { redirect } from 'next/navigation';
 
 const font = Lato({ weight: ['300', '100', '700', '900', '400'], subsets: ['latin'], display: 'swap' });
 
@@ -26,9 +29,10 @@ interface ICustomAppProps extends AppProps {
     user: IUserInfo;
     messages: any;
     market: IMarket;
+    category: ICategoryApiResponse;
 }
 
-export default function MyApp({ Component, pageProps, user, messages, market }: ICustomAppProps) {
+export default function MyApp({ Component, pageProps, user, messages, market, category }: ICustomAppProps) {
     const router = useRouter();
 
     const [loading, setLoading] = useState(false);
@@ -42,6 +46,7 @@ export default function MyApp({ Component, pageProps, user, messages, market }: 
         const handleComplete = () => {
             NProgress.done();
             setLoading(false);
+            setLoading(true);
         };
 
         Router.events.on('routeChangeStart', handleStart);
@@ -84,7 +89,9 @@ export default function MyApp({ Component, pageProps, user, messages, market }: 
                 data-theme={user ? user?.user_settings?.theme : 'light'}
             >
                 <NProgressContainer
-                    color='#e0115f'
+                    color={
+                        user ? (user?.user_settings?.theme === 'dark' ? 'white' : 'rgb(32, 33, 36)') : 'rgb(32, 33, 36)'
+                    }
                     options={{ showSpinner: true, easing: 'ease' }}
                 />
                 <AnimatePresence>
@@ -94,10 +101,10 @@ export default function MyApp({ Component, pageProps, user, messages, market }: 
                         messages={messages}
                     >
                         <SessionProvider>
-                            <AnimatePresence>{loading || user?.isLoading ? <ScreenLoading /> : null}</AnimatePresence>
                             <Wrapper
                                 user={user}
                                 market={market}
+                                category={category}
                             >
                                 <ToastProvider>
                                     <Component {...pageProps} />
@@ -113,18 +120,21 @@ export default function MyApp({ Component, pageProps, user, messages, market }: 
 
 MyApp.getInitialProps = async (
     context: AppContext
-): Promise<{ messages: any; user: IUserInfo; market: IMarket } & AppInitialProps> => {
+): Promise<{ messages: any; user: IUserInfo; market: IMarket; category: ICategoryApiResponse } & AppInitialProps> => {
     const ctx = await App.getInitialProps(context);
     const session = await getSession(context as CtxOrReq);
 
     const market = await marketService.GET();
-
+    const category = await categoryService.GET('1', 'default');
     const userInfo = session?.user as IUserInfo;
+
+    console.log(market);
 
     return {
         ...ctx,
         user: userInfo,
         messages: (await import(`../messages/${context.router.locale}.json`)).default,
         market,
+        category,
     };
 };

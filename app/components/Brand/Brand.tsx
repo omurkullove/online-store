@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import brandService from '@/app/services/brandService';
 import { ImSpinner2 } from 'react-icons/im';
 import { FaArrowRight } from 'react-icons/fa';
+import Link from 'next/link';
 
 const Brand = ({ data }: { data: IBrandApiResponse }) => {
     const locale = useLocale();
@@ -43,10 +44,11 @@ const Brand = ({ data }: { data: IBrandApiResponse }) => {
                 loader={<ImSpinner2 className={styles.loading} />}
             >
                 {list.map((item) => (
-                    <div
+                    <Link
+                        href={`/filter/b=${item.id}`}
                         className={styles.item}
+                        locale={locale}
                         key={item.id}
-                        onClick={() => alert(item.id)}
                     >
                         <div className={styles.icon}>
                             <Image
@@ -59,7 +61,7 @@ const Brand = ({ data }: { data: IBrandApiResponse }) => {
                         </div>
 
                         <p className={styles.name}>{translated('name', item.translate_content, locale)}</p>
-                    </div>
+                    </Link>
                 ))}
                 {list.length != data.total && width && width <= 1024 ? (
                     <div className={styles.loadMore_block}>

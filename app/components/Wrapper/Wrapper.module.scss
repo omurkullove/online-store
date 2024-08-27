@@ -39,6 +39,10 @@
     .shadow {
         box-shadow: var(--box-shadow);
     }
+
+    .hide {
+        display: none;
+    }
 }
 
 @media (max-width: 1190px) {

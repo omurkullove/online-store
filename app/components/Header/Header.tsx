@@ -25,6 +25,11 @@ const Header = ({ user, market }: { user: IUserInfo; market: IMarket }) => {
     const router = useRouter();
     const locale = useLocale();
 
+    const handleCostToggleLanguage = () => {
+        setIsLangModal(false);
+        window.location.reload();
+    };
+
     return (
         <>
             <motion.header
@@ -62,15 +67,17 @@ const Header = ({ user, market }: { user: IUserInfo; market: IMarket }) => {
                             <FaPhone />
 
                             <div className={styles.list}>
-                                {Object.values(market.contact_details).map((value) => (
-                                    <Link
-                                        key={value}
-                                        href={`tel:${value}`}
-                                        className={styles.number}
-                                    >
-                                        {value}
-                                    </Link>
-                                ))}
+                                {market?.contact_details
+                                    ? Object.values(market.contact_details).map((value) => (
+                                          <Link
+                                              key={value}
+                                              href={`tel:${value}`}
+                                              className={styles.number}
+                                          >
+                                              {value}
+                                          </Link>
+                                      ))
+                                    : null}
                             </div>
                         </div>
 
@@ -139,7 +146,7 @@ const Header = ({ user, market }: { user: IUserInfo; market: IMarket }) => {
             </motion.header>
             <ToggleLanguage
                 isOpen={isLangModal}
-                onClose={() => setIsLangModal(false)}
+                onClose={handleCostToggleLanguage}
             />
 
             <AnimatePresence>

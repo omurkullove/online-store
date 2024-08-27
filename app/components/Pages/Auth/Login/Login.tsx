@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 import styles from './Login.module.scss';
 import FormField from '@/app/elements/FormField/FormField';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
@@ -14,6 +14,7 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const t = useTranslations('Login');
+    const locale = useLocale();
     const message = useTranslations('Messages');
     const router = useRouter();
     const { push } = useRouter();

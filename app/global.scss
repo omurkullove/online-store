@@ -10,7 +10,12 @@
     --text: rgb(32, 33, 36);
     --search-input-border: none;
     --bg-light: white;
+    --category-loading-animation: #f1f0f0;
     --search-input-bg: #f5f5f5;
+    --product-text: rgb(32, 33, 36);
+
+    --product-info-item: #f6f6f6;
+    --product-info-title: rgb(32, 33, 36);
 }
 
 [data-theme='dark'] {
@@ -19,7 +24,11 @@
     --search-input-border: 0.5px solid rgb(150, 150, 153);
     --search-input-bg: transparent;
     --bg-light: #303133;
+    --category-loading-animation: #303133;
     --text-light: #cccccd;
+    --product-text: white;
+    --product-info-item: #1d1d1d;
+    --product-info-title: #cccccd;
 }
 
 * {
@@ -33,6 +42,7 @@ a {
 }
 
 html {
+    background-color: var(--bg);
     overscroll-behavior-y: none;
     overflow-y: auto;
 }

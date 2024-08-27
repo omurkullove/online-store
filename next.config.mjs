@@ -19,6 +19,31 @@ const nextConfig = {
                 hostname: 'tour-55.online',
                 pathname: '**',
             },
+            {
+                protocol: 'https',
+                hostname: 'world-store.su',
+                pathname: '**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'irazbil69.ru',
+                pathname: '**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'i.imgur.com',
+                pathname: '**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'ixbt.online',
+                pathname: '**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'static.tildacdn.com',
+                pathname: '**',
+            },
         ],
     },
 

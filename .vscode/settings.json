@@ -1,3 +1,4 @@
 {
-    "cSpell.words": ["Lato", "nprogress", "plaiceholder", "signin", "Swiper", "toastify"]
+    "cSpell.words": ["Lato", "nprogress", "plaiceholder", "signin", "Swiper", "toastify"],
+    "i18n-ally.localesPaths": ["messages"]
 }

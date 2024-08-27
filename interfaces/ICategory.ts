@@ -4,8 +4,10 @@ import { ISubcategory } from './ISubcategory';
 export interface ICategoryItem {
     translate_content: ITranslation[];
     id: string;
-    subcategories: ISubcategory[];
+    subcategories?: ISubcategory[];
     image: string;
+    icon: string | null;
+    detail?: string;
 }
 
 export interface ICategoryApiResponse {

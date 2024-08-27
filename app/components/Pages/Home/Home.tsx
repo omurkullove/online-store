@@ -1,24 +1,26 @@
 import styles from './Home.module.scss';
-import { ICategoryApiResponse } from '@/interfaces/ICategory';
+import { ICategoryApiResponse, ICategoryItem } from '@/interfaces/ICategory';
 import 'swiper/css';
 import Category from '../../Category/Category';
 import Brand from '../../Brand/Brand';
 import { IBrandApiResponse } from '@/interfaces/IBrand';
+import Products from '../../Products/Products';
+import { IProductApiResponse } from '@/interfaces/IProduct';
+import Image from 'next/image';
+import InfoSection from '../../InfoSection/InfoSection';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
-const Home = ({
-    category_data,
-    brand_data,
-}: {
-    category_data: ICategoryApiResponse;
-    brand_data: IBrandApiResponse;
-}) => {
+const Home = ({ brand_data, product_data }: { brand_data: IBrandApiResponse; product_data: IProductApiResponse }) => {
+    const router = useRouter();
+
     return (
         <div className={styles.container}>
-            <Category data={category_data} />
             <div className={styles.double_container}>
                 <Brand data={brand_data} />
-                <div className={styles.info_section}>GlobalJoy</div>
+                <InfoSection />
             </div>
+            <Products data={product_data} />
         </div>
     );
 };

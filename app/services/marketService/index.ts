@@ -10,7 +10,7 @@ class MarkerService {
             return data as IMarket;
         } catch (err) {
             return {
-                name: 'Too many request',
+                name: '',
                 contact_details: {},
                 description: '',
                 address: '',

@@ -28,7 +28,9 @@ export const options: NextAuthOptions = {
                     throw new Error(loginResponse.data.detail);
                 }
 
-                const profileResponse = await authService.getProfile(loginResponse?.headers['set-cookie'] ?? '');
+                const profileResponse = await authService.getProfile(
+                    loginResponse?.headers['set-cookie'] ?? ''
+                );
 
                 if (profileResponse) {
                     return {
@@ -78,7 +80,11 @@ export const options: NextAuthOptions = {
                 }
             }
 
-            if (trigger === 'update' && !refreshTokenPromise && Date.now() < expirationDate.getTime()) {
+            if (
+                trigger === 'update' &&
+                !refreshTokenPromise &&
+                Date.now() < expirationDate.getTime()
+            ) {
                 token.user_settings = session;
             }
 

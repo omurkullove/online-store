@@ -1,5 +1,6 @@
-import axios from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { BASE_URL, PUBLIC_BASE_URL } from './utils/consts';
+import { redirect } from 'next/navigation';
 
 export const API = axios.create({
     baseURL: '',
@@ -22,7 +23,10 @@ export const API_SERVER = axios.create({
     },
 });
 
-API_SERVER.interceptors.response.use(async (response) => {
-    console.log(response.config.url, response.status, response.data);
+const handleFetchResponses = (response: AxiosResponse) => {
+    console.log(response.data);
     return response;
-});
+};
+
+API_CLIENT.interceptors.response.use(handleFetchResponses);
+API_SERVER.interceptors.response.use(handleFetchResponses);

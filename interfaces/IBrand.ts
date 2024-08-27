@@ -4,6 +4,7 @@ export interface IBrandItem {
     translate_content: ITranslation[];
     id: string;
     icon: string;
+    detail?: string;
 }
 
 export interface IBrandApiResponse {

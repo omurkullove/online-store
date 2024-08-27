@@ -10,11 +10,11 @@ interface IToggleLanguageProps {
 
 const ToggleLanguage = ({ isOpen, onClose }: IToggleLanguageProps) => {
     const router = useRouter();
-    const { pathname } = router;
+    const { asPath } = router;
 
     const handleChangeLanguage = async (lang: string, e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
-        await router.push(pathname, pathname, { locale: lang }).then(onClose);
+        await router.push(asPath, asPath, { locale: lang }).then(onClose);
     };
 
     return (

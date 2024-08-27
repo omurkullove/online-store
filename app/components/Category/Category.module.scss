@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    margin-top: 30px;
 
     .arrows {
         display: flex;
@@ -46,20 +47,6 @@
         display: flex;
         align-items: center;
         padding: 20px;
-
-        .loading_block {
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            .loading {
-                animation: loading-animate 2s infinite;
-                -webkit-animation: loading-animate 2s infinite;
-                font-size: 23px;
-                color: var(--hover);
-            }
-        }
 
         .item {
             display: flex;
@@ -107,12 +94,38 @@
     }
 }
 
-@keyframes loading-animate {
+.loading {
+    &::after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 175px;
+        top: 0;
+        right: 0;
+        left: 0;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0) 4%,
+            var(--category-loading-animation) 25%,
+            rgba(255, 255, 255, 0) 36%
+        );
+        background-size: 1000px 100%;
+        animation: shimmer 2.5s infinite linear;
+        -webkit-animation: shimmer 2.5s infinite linear;
+    }
+}
+
+@keyframes shimmer {
     0% {
-        transform: rotate(0deg);
+        background-position: -1000px 0;
     }
     100% {
-        transform: rotate(720deg);
+        background-position: 1000px 0;
     }
 }
 
